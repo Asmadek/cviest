@@ -1,5 +1,7 @@
 <script>
-	import Jobs from './Jobs.svelte';
+	import Jobs from './Jobs.svelte'
+
+	let database = {}
 </script>
 
 <Jobs/>
