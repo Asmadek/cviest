@@ -1,5 +1,5 @@
 <script>
-	import Jobs from './Jobs.svelte';
+	import Jobs from './Jobs.svelte'
 </script>
 
 <Jobs/>

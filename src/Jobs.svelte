@@ -1,6 +1,7 @@
 <script>
-	let jobsList = []
-	let id = 0
+	import { jobs } from './stores/jobs.js';
+
+    let id = 0
 	let initialJob = {
 		title: '',
 		company: '',
@@ -16,16 +17,16 @@
     }
 
 	function editJob (jobToEdit) {
-		job = jobToEdit
-		jobsList = jobsList.filter(j => j !== jobToEdit)
+		job = jobToEdit        
+        jobs.remove(job)
 	}
 
 	function updateJob () {
-		jobsList = [...jobsList, { ...job }]
+        jobs.add(job)
 	}
 
 	function addJob () {
-		jobsList = [...jobsList, { ...job, id: ++id }]
+        jobs.add({ ...job, id: ++id })
 	}
 
 	function clearJobForm () {
@@ -50,7 +51,7 @@
 
 
 <div class="jobs">
-	{#each jobsList as job, i}
+	{#each $jobs as job, i}
 		<div>
 			{ job.title }
 		</div>
@@ -61,6 +62,7 @@
 			{ job.start } - { job.end }
 		</div>
 		<button on:click={() => editJob(job)}>Edit</button>
+		<button on:click={() => jobs.remove(job)}>Remove</button>
 	{/each}
 </div>
 
